@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin : 0;
+  box-sizing: border-box;
+}
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 10px;
+  margin-left: 12px; /* Move scrollbar visually to the right */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border: 6px solid rgb(197, 197, 197);
+  border-radius: 100px;
+  margin-left: 12px; /* Move scrollbar visually to the right */
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-red-600; /* Tailwind equivalent for 'bg-red-600' */
+  margin-left: 12px; /* Move scrollbar visually to the right */
+
+  border-radius: 100px; /* Make the scrollbar handle rounded */
+}
+
