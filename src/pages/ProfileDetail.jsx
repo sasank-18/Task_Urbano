@@ -15,15 +15,17 @@ const ProfileDetail = () => {
 
   const { pandit_id } = useParams();
   const [panditData, setPanditData] = useState({
-    phone: "",
-    lastName: "",
-    firstName: "",
+    phone: "21543446546",
+    lastName: "ljljkj",
+    firstName: "ljjlj",
     imgUrl: "",
   });
+
+
   const [error, setError] = useState();
   const [updataDataError, setUpdataDataError] = useState(false);
   const navigate  = useNavigate();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function getPanditData() {
     const { response, error } = await getPanditById(
@@ -49,7 +51,7 @@ const ProfileDetail = () => {
       lastName: response?.results?.last_name,
       firstName: response?.results?.first_name,
       imgUrl: response?.results?.profile_image,
-    });
+    })
     setLoading(false);
   }
 
@@ -79,10 +81,11 @@ const ProfileDetail = () => {
     setLoading(false);
   };
 
+  
   return loading ? (
     <SpinLoader />
-  ) : (
-    <>
+  ) : 
+  (  <>
       <main className="relative">
         <img
           alt="profilebg"

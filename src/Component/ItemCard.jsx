@@ -27,7 +27,8 @@ const ItemCard = ({
           (data) =>
             data.service === id && data?.active && !data.itemAlreadyExist
         );
-  console.log(active);
+
+
   // data which is already exist in database shouldn't allow to re-update as there is not update api implemented yet
 
   const alreadyExistedPanditServiceData =
@@ -36,10 +37,7 @@ const ItemCard = ({
       (data) => data.service === id && data.itemAlreadyExist
     );
 
-  console.log(
-    "alreadyExistedPanditServiceData",
-    alreadyExistedPanditServiceData
-  );
+
 
   const handleClick = async () => {
     if (cardType === "Category") {
@@ -53,14 +51,13 @@ const ItemCard = ({
     
     else {
          
-      if(alreadyExistedPanditServiceData)  return ;
+      if(alreadyExistedPanditServiceData)  return alert("This Item is already available on DB")
 
       const DataExisted =
         selectedServices &&
         selectedServices?.find((data) => {
-          return data?.service === id && data?.dakshina;
-        });
-
+          return data?.service === id && data?.dakshina ;
+        })
 
       if (!DataExisted)
         return alert("fill the Dakshina and duration then select the service");
@@ -80,6 +77,7 @@ const ItemCard = ({
         setSelectedServices(updatedData);
         return;
       }
+
 
       const updatedData = selectedServices.map((data) => {
         if (data?.service === id) {
@@ -129,7 +127,6 @@ const ItemCard = ({
         return data;
       });
 
-      console.log("raj", updatedData);
       setServiceEditMode(false);
 
       setSelectedServices(updatedData);

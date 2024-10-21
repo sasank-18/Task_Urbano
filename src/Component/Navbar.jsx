@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="px-4 py-2 z-50 fixed mx-4 top-[14px] w-[calc(100vw-50px)] flex justify-between items-center bg-[#DB2C1D] rounded-md  ">
+    <nav className="px-4 py-2 z-50 fixed mx-6 top-[14px] w-[calc(100vw-50px)] flex justify-between items-center bg-[#DB2C1D] rounded-md  ">
       <img alt="Logo" width={36} height={36} src={logo} />
 
       {!token ? (
@@ -16,31 +16,17 @@ const Navbar = () => {
         </p>
       ) : (
         <>
-         <div className="flex gap-2">
+         <div className="flex  gap-2">
          <button
             onClick={() => {
               navigate("/pandit_service");
             }}
-            className="font-normal text-red-600 text-base px-3 rounded-md  py-1 bg-white  "
+            className="font-normal text-red-600 text-base max-sm:text-xs px-3 rounded-full  py-1 bg-white  "
           >
-            User Service
+            Your Service
           </button>
-         <button
-            onClick={() => {
-              navigate(`/services`);
-            }}
-            className="font-normal text-red-600 text-base px-3 rounded-md  py-1 bg-white  "
-          >
-            Service
-          </button>
-         <button
-            onClick={() => {
-              navigate(`/profile/${Cookies.get("user_id")}`);
-            }}
-            className="font-normal text-red-600 text-base px-3 rounded-md  py-1 bg-white  "
-          >
-            Profile
-          </button>
+        
+         
           <button
             onClick={() => {
               Cookies.remove("user_id", { path: "/" });
@@ -48,7 +34,7 @@ const Navbar = () => {
 
               navigate("/");
             }}
-            className="font-normal text-red-600 text-base px-3 rounded-md  py-1 bg-white  "
+            className="font-normal text-red-600 text-base max-sm:text-xs px-3 rounded-full  py-1 bg-white  "
           >
             Logout
           </button>

@@ -139,9 +139,9 @@ const ProfileForm = ({
  
 
       <div className="flex items-center gap-x-3 justify-between">
-        {panditData.firstName && !editMode && (
-          <>
-            <button
+
+     {!editMode && (
+      <button
               onClick={() => {
                 setEditMode(true);
               }}
@@ -149,6 +149,9 @@ const ProfileForm = ({
             >
               Edit
             </button>
+     )}
+        {!editMode && (
+          <>
             <button
               onClick={() => {
                 navigate("/Categories");
@@ -177,18 +180,7 @@ const ProfileForm = ({
             </button>
           </>
         )}
-        {!panditData?.firstName && (
-          <>
-            <button
-              className="px-2 py-2 flex-1 font-semibold rounded-md text-white bg-red-600"
-              type="submit"
-            >
-              Save
-            </button>
-          </>
-        )}
       </div>
-      {loading && <SpinLoader />}
     </form>
   );
 };

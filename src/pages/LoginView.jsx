@@ -19,8 +19,8 @@ const LoginView = () => {
 
 
   return (
-    <section className="flex  items-end justify-between  w-full  ">
-      <div className="w-[45%] relative ">
+    <section className="flex   items-end justify-between  w-full  ">
+      <div className="w-[45%] max-sm:w-full relative ">
         <img
           className="h-screen w-full object-cover "
           alt="Logo"
@@ -29,7 +29,7 @@ const LoginView = () => {
        <LoginForm/>
       </div>
 
-      <div className="w-[53%] relative flex justify-end items-end">
+      <div className="w-[53%] max-sm:hidden relative flex justify-end items-end">
         <h3 className=" fixed top-56 right-[24%] font-semibold text-4xl leading-normal w-[28rem]">
           पूजा पाठ हो या अनुष्ठान,
           <span className="text-red-600 ">पंडित</span> मिलना हुआ आसान।{" "}
