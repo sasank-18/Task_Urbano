@@ -10,7 +10,6 @@ import Error from "./Component/Error";
 const router = createBrowserRouter([
   {
     element: <AppLayout/>,
-    errorElement : <Error/>,
     children: [
       {
         path: "/",
@@ -32,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "pandit_service",
         element: <PanditServices/>,
+      },
+      {
+        path: "error",
+        element: <Error/>,
       },
     ],
   },

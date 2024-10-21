@@ -28,7 +28,8 @@ const LoginForm = () => {
       const { response, error } = await sendOtp(number);
       if (error) {
         setLoading(false);
-        return setError(error);
+         setError(error);
+         return;
       }
 
       setResponse(response);
@@ -41,10 +42,11 @@ const LoginForm = () => {
       console.log(panditData.current.contact_number, otp)
       
       const { response, error } = await panditLogin(panditData.current.contact_number, otp);
-
+        console.log('helgi',error)
       if (error) {
         setLoading(false);
-        return setError(error);
+         setError(error);
+         return ;
       }
 
       console.log(response)
@@ -55,8 +57,10 @@ const LoginForm = () => {
         secure: true, 
         sameSite: 'Strict',
       });
-      
-      navigate(`/profile/${response?.results?.data?.user_id}`)      
+      if(response?.results?.data?.user_id){
+        navigate(`/profile/${response?.results?.data?.user_id}`)      
+      }
+   
     }
     setLoading(false);
   };

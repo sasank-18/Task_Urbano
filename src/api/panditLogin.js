@@ -18,9 +18,13 @@
 
       console.log(responseApi)
 
-      // if (!responseApi.ok) {
-      //   throw new Error(`Error: ${responseApi.status}`);
-      // }
+      if (!responseApi.ok) {
+        console.log("hello dear love")
+        return {
+          response,
+          error  : "Otp is invalid"
+        };
+        }
 
        response = await responseApi.json();
       return {

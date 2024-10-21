@@ -7,7 +7,7 @@ export const imageUploadAndGetUrl = async (file) => {
     const data = await  getPresigned_url();
 
     if (data.error) {
-      return { response : data.response, data : data.response };
+      return { response : data.response, error : data.error };
     }
 
     const presigned_url = data?.response?.results?.presigned_url;
@@ -20,7 +20,7 @@ export const imageUploadAndGetUrl = async (file) => {
 
 
    if(data2.error){
-    return { response : data2.response, data : data2.response };
+      return { response : data2.response, error : data2.error };
    }
 
 
@@ -28,7 +28,7 @@ export const imageUploadAndGetUrl = async (file) => {
    const data3 =await getFinalImageString(file_name)
    console.log(data3);
    if(data3.error){
-    return { response : data3.response, data : data3.response };
+    return { response : data3.response, error : data3.error };
    }
 
    return {response : data3.response.results.presigned_url , error : data3.error}
@@ -52,7 +52,7 @@ async function getPresigned_url() {
     );
 
     if (!responseApi.ok) {
-      throw new Error(`Error: ${responseApi.status}`);
+      return { response : response, error : responseApi.status };
     }
 
     const data = await responseApi.json();
@@ -76,7 +76,7 @@ async function uploadImage_on_PresignedUrl(presigned_url,file){
         });
     
         if (!responseApi.ok) {
-          throw new Error(`Error uploading image: ${responseApi.status}`);
+          return { response : response, error : responseApi.status };
         }
 
      return {response:"Image Uploaded Successfully", error};
@@ -91,7 +91,7 @@ async function getFinalImageString(fileName){
     let response;
   let error;
     try {
-        const response = await fetch(
+        const responseApi = await fetch(
           `${import.meta.env.VITE__API_DOMAIN}get-presigned-url?url=${fileName}`,
           {
             method: 'GET',
@@ -101,11 +101,11 @@ async function getFinalImageString(fileName){
           }
         );
     
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
+        if (!responseApi.ok) {
+          return { response : response, error : responseApi.status };
         }
     
-        const data = await response.json();
+        const data = await responseApi.json();
          return {response : data, error}
     
     } catch (error) {

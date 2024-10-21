@@ -1,9 +1,7 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { CiEdit } from "react-icons/ci";
-import { RiEdit2Fill } from "react-icons/ri";
+
 import { validateServiceData } from "../utils/validateServiceData";
+import PropTypes from 'prop-types';
 
 const ItemCard = ({
   categoryId,
@@ -13,7 +11,6 @@ const ItemCard = ({
   selectedCategory,
   setSelectedCategory,
   cardType,
-  imgUrl,
   title_local_lang,
   title,
   description,
@@ -259,3 +256,36 @@ const ItemCard = ({
 };
 
 export default ItemCard;
+
+
+
+
+
+
+
+
+
+
+ItemCard.propTypes = {
+  categoryId: PropTypes.number, // Ensure categoryId is a number and required
+  selectedServices: PropTypes.arrayOf(
+    PropTypes.shape({
+      service: PropTypes.number, // service should be a number
+      dakshina: PropTypes.number, // dakshina is a number but not necessarily required
+      duration: PropTypes.number, // duration is a number but not necessarily required
+      category: PropTypes.number, // category is a number and required
+      active: PropTypes.bool, // active is a boolean
+      itemAlreadyExist: PropTypes.bool, // itemAlreadyExist is a boolean
+    })
+  ),
+  setSelectedServices: PropTypes.func, // setSelectedServices should be a function
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // id can be a string or a number
+  selectedCategory: PropTypes.arrayOf(PropTypes.number), // selectedCategory is an array of numbers
+  setSelectedCategory: PropTypes.func, // setSelectedCategory should be a function
+  cardType: PropTypes.oneOf(['Category', 'Service']), // cardType can either be 'Category' or 'Service'
+  imgUrl: PropTypes.string, // imgUrl is a string and required
+  title_local_lang: PropTypes.string, // title_local_lang is a string and required
+  title: PropTypes.string, // title is a string and required
+  description: PropTypes.string, // description is a string, but not required
+};
+

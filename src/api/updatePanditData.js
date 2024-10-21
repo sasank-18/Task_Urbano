@@ -1,6 +1,6 @@
 
-export const updatePanditData = async (panditId, token, data,imgUrl) => {
-    console.log("hello",panditId,token, data,encodeURIComponent(imgUrl));
+export const updatePanditData = async (panditId, token, data) => {
+    // console.log("hello",panditId,token, data,encodeURIComponent(imgUrl));
     let response;
     let error;
     try {
@@ -13,8 +13,8 @@ export const updatePanditData = async (panditId, token, data,imgUrl) => {
         body: JSON.stringify({
           first_name: data.firstName,
           last_name: data.lastName,
-          contact_number: data.phone,
-          profile_image: encodeURIComponent(imgUrl),
+          contact_number: data.phone
+          // profile_image: encodeURIComponent(imgUrl)
         }),
       });
   

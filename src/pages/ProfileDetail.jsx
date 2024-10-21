@@ -36,6 +36,14 @@ const ProfileDetail = () => {
         navigate('/error', { state: error }); 
        }
 
+       Cookies.set('user_id',response?.results?.id, {
+        expires: 1, 
+        path: '/',  
+        secure: true, 
+        sameSite: 'Strict',
+      });
+
+
     setPanditData({
       phone: response?.results?.contact_number,
       lastName: response?.results?.last_name,
@@ -63,6 +71,7 @@ const ProfileDetail = () => {
         setLoading(false);
         return setError(error);
       }
+      
       setPanditData((prev) => ({ ...prev, imgUrl: response }));
     } else {
       console.error("Invalid file type. Please select an image.");
@@ -88,10 +97,10 @@ const ProfileDetail = () => {
         />
 
         <section
-          className="fixed top-0 backdrop-blur-[1px] left-0 h-screen
+          className="fixed top-0 lg:top-6 backdrop-blur-[1px]   overflow-auto   left-0 min-h-screen
         min-w-full flex justify-center flex-col items-center"
         >
-          <h2 className="font-bold text-3xl mb-8">Profile Data</h2>
+          <h2 className="font-bold text-3xl mb-4">Profile Data</h2>
           <div className="relative mb-2">
             {panditData?.imgUrl ? (
               <img
@@ -111,13 +120,13 @@ const ProfileDetail = () => {
                 <FaEdit className="h-6 w-6 opacity-60 absolute -top-1 -right-2 cursor-pointer" />
               )}
             </label>
-            {error && (
-              <p className="text-center text-xs text-red-500 mt-1 font-medium">
+          
+          </div>
+          {error && (
+              <p className="text-center max-w- text-xs max-w-[85%]  md:max-w-[30%] mb-4 text-red-500  font-medium">
                 {error}
               </p>
             )}
-          </div>
-
           {/* Hidden file input */}
           <input
             id="file-input"
@@ -128,6 +137,8 @@ const ProfileDetail = () => {
           />
 
           <ProfileForm
+          error = {error}
+          setError = {setError}
           updataDataError = {updataDataError}
            setUpdataDataError = {setUpdataDataError}
             editMode={editMode}

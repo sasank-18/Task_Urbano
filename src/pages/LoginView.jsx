@@ -13,7 +13,7 @@ const LoginView = () => {
   
   useEffect(() => {
     if (Cookies.get("authAccessToken")) {
-      navigate("/categories");
+      navigate(`/profile/${Cookies.get("user_id")}`);
     }
   }, [navigate]);
 
