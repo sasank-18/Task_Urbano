@@ -59,7 +59,9 @@ const ProfileForm = ({
       });
 
       if (panditData?.imgUrl) {
-        setError("Unable to save image, as permanent Image acccess is denied by server,and long string can'be update on server, sorry!");
+        setError(
+          "Unable to save image, as permanent Image acccess is denied by server,and long string can'be update on server, sorry!"
+        );
       }
 
       setUpdataDataError(false);
@@ -136,20 +138,18 @@ const ProfileForm = ({
           Enable to save, try again later.
         </p>
       )}
- 
 
       <div className="flex items-center gap-x-3 justify-between">
-
-     {!editMode && (
-      <button
-              onClick={() => {
-                setEditMode(true);
-              }}
-              className="px-2 py-2 flex-1  font-semibold rounded-md text-white bg-green-600"
-            >
-              Edit
-            </button>
-     )}
+        {!editMode && (
+          <button
+            onClick={() => {
+              setEditMode(true);
+            }}
+            className="px-2 py-2 flex-1  font-semibold rounded-md text-white bg-green-600"
+          >
+            Edit
+          </button>
+        )}
         {!editMode && (
           <>
             <button
@@ -167,6 +167,7 @@ const ProfileForm = ({
             <button
               onClick={() => {
                 setEditMode(false);
+                console.log(panditData)
               }}
               className="px-2 py-2 flex-1 font-semibold rounded-md text-white bg-red-600"
             >
@@ -188,7 +189,6 @@ const ProfileForm = ({
 export default ProfileForm;
 
 ProfileForm.propTypes = {
-
   error: PropTypes.string,
   setError: PropTypes.func,
   updataDataError: PropTypes.bool,

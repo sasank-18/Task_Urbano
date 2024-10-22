@@ -15,9 +15,9 @@ const ProfileDetail = () => {
 
   const { pandit_id } = useParams();
   const [panditData, setPanditData] = useState({
-    phone: "21543446546",
-    lastName: "ljljkj",
-    firstName: "ljjlj",
+    phone: "",
+    lastName: "",
+    firstName: "",
     imgUrl: "",
   });
 
@@ -25,7 +25,8 @@ const ProfileDetail = () => {
   const [error, setError] = useState();
   const [updataDataError, setUpdataDataError] = useState(false);
   const navigate  = useNavigate();
-  const [loading, setLoading] = useState(false);
+  const [imgLoad, setImgLoad] = useState(false)
+  const [loading, setLoading] = useState(true);
 
   async function getPanditData() {
     const { response, error } = await getPanditById(
@@ -63,14 +64,13 @@ const ProfileDetail = () => {
 
   const handleFileSelect = async (e) => {
     if (!editMode) return;
-
-    setLoading(true);
+    setImgLoad(true);
     const file = e.target.files[0]; // Get the selected file
     if (file && file.type.startsWith("image/")) {
       const { response, error } = await imageUploadAndGetUrl(file);
       console.log("l21ove", response);
       if (error) {
-        setLoading(false);
+        setImgLoad(false);
         return setError(error);
       }
       
@@ -78,7 +78,7 @@ const ProfileDetail = () => {
     } else {
       console.error("Invalid file type. Please select an image.");
     }
-    setLoading(false);
+    setImgLoad(false);
   };
 
   
@@ -156,6 +156,7 @@ const ProfileDetail = () => {
         </section>
       </main>
       {loading && <SpinLoader />}
+      {imgLoad && <SpinLoader />}
     </>
   );
 };

@@ -60,9 +60,7 @@ const Services = () => {
     getServicesAndGetPanditServiceData();
   }, []);
 
-  return loading ? (
-    <SpinLoader />
-  ) : (
+  return  (
     <MandalaBgLayout>
       <div className="pt-20">
         <h1 className="text-center text-4xl sticky top-20 font-bold">
@@ -130,6 +128,8 @@ const Services = () => {
         </button>
       </div>
      {success && <Successfull/>} 
+     {loading && <SpinLoader />}
+
     </MandalaBgLayout>
   );
 };

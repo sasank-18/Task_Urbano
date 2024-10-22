@@ -37,9 +37,7 @@ const Categories = () => {
     getPanditsCategory();
   }, []);
 
-  return loading ? (
-    <SpinLoader />
-  ) : (
+  return (
     <MandalaBgLayout>
       <div className="pt-20">
         <h1 className="text-center text-4xl sticky top-20 font-bold">Categories Of Pooja</h1>
@@ -79,6 +77,8 @@ const Categories = () => {
           Next
         </button>
       </div>
+      {loading && <SpinLoader />}
+
     </MandalaBgLayout>
   );
 };
